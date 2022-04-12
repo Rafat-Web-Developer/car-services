@@ -1,10 +1,12 @@
 import React from "react";
+import { Container } from "react-bootstrap";
+import Services from "./Services/Services";
 
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <Container className="my-5">
+      <Services></Services>
+    </Container>
   );
 };
 
