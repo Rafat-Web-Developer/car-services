@@ -7,7 +7,7 @@ const Header = () => {
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
       <Container>
         <Navbar.Brand as={Link} to="/">
-          React-Bootstrap
+          Car-Services
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

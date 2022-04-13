@@ -12,11 +12,14 @@ const Services = () => {
   }, []);
 
   return (
-    <Row xs={1} md={3} className="g-4">
-      {services.map((service) => (
-        <Service key={service.id} service={service}></Service>
-      ))}
-    </Row>
+    <section>
+      <h3 className="text-center py-5 text-primary">Our Services</h3>
+      <Row xs={1} md={3} className="g-4">
+        {services.map((service) => (
+          <Service key={service.id} service={service}></Service>
+        ))}
+      </Row>
+    </section>
   );
 };
 
