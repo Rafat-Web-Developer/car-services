@@ -7,6 +7,8 @@ import Header from "./Pages/Shared/Header/Header";
 import "bootstrap/dist/css/bootstrap.css";
 import Login from "./Pages/Login/Login";
 import ServiceDetails from "./Pages/ServiceDetails/ServiceDetails";
+import SignUp from "./Pages/SignUp/SignUp";
+import NotFound from "./Pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         ></Route>
         <Route path="/about" element={<About></About>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
+        <Route path="/signup" element={<SignUp></SignUp>}></Route>
+        <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>
     </div>

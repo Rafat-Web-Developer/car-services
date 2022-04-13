@@ -2,11 +2,11 @@ import React from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const SignUp = () => {
   return (
     <Card className="w-50 mx-auto my-5">
       <Card.Header className="bg-primary fw-bold text-white fs-5">
-        Login
+        Sign Up
       </Card.Header>
       <Card.Body>
         <Form>
@@ -24,16 +24,16 @@ const Login = () => {
           </Form.Group>
 
           <Button variant="primary" type="submit" className="w-100">
-            Login
+            Sign Up
           </Button>
           <p className="my-3">
-            Create a new account{" "}
+            Already have an account{" "}
             <Link
               className="fw-bold text-primary"
               style={{ textDecoration: "none" }}
-              to="/signup"
+              to="/login"
             >
-              Sign up
+              Login
             </Link>
           </p>
         </Form>
@@ -42,4 +42,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
