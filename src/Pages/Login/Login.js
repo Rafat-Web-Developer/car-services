@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import SocialLink from "../Shared/SocialLink/SocialLink";
 
 const Login = () => {
   return (
@@ -34,6 +35,7 @@ const Login = () => {
             </Link>
           </p>
         </Form>
+        <SocialLink></SocialLink>
       </Card.Body>
     </Card>
   );
