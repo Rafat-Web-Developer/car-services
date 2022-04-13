@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
-    <Card className="w-50 mx-auto my-5">
+    <Card className="w-50 mx-auto my-5 shadow-lg">
       <Card.Header className="bg-primary fw-bold text-white fs-5">
         Login
       </Card.Header>
@@ -13,9 +13,6 @@ const Login = () => {
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control type="email" placeholder="Enter email" />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
