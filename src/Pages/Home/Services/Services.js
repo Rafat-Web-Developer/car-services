@@ -12,7 +12,7 @@ const Services = () => {
   }, []);
 
   return (
-    <section>
+    <section id="services">
       <h2 className="text-center py-5 text-primary">Our Services</h2>
       <Row xs={1} md={3} className="g-4">
         {services.map((service) => (

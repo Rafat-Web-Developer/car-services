@@ -19,7 +19,7 @@ const experts = [
 
 const Experts = () => {
   return (
-    <section>
+    <section id="experts">
       <h2 className="text-center py-5 text-primary">Experts</h2>
       <Row xs={1} md={3} className="g-4">
         {experts.map((expert) => (
