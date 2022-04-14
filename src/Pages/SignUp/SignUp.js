@@ -54,6 +54,12 @@ const SignUp = () => {
               required
             />
           </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+            <Form.Check
+              type="checkbox"
+              label="Agree with our terms and conditions"
+            />
+          </Form.Group>
           {loading && <p className="text-primary fw-bold">Loading...</p>}
           {error && <p className="text-danger fw-bold">{error.message}</p>}
           <Button variant="primary" type="submit" className="w-100">

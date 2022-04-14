@@ -61,11 +61,18 @@ const Login = () => {
           <p className="my-3">
             Create a new account{" "}
             <Link
-              className="fw-bold text-primary"
-              style={{ textDecoration: "none" }}
+              className="fw-bold text-primary text-decoration-none"
               to="/signup"
             >
               Sign up
+            </Link>
+          </p>
+          <p className="my-3">
+            <Link
+              className="fw-bold text-primary text-decoration-none"
+              to="/signup"
+            >
+              Forgot Password
             </Link>
           </p>
         </Form>
