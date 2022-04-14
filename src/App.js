@@ -11,6 +11,7 @@ import SignUp from "./Pages/SignUp/SignUp";
 import NotFound from "./Pages/NotFound/NotFound";
 import CheckOut from "./Pages/CheckOut/CheckOut";
 import RequireAuth from "./Pages/Auth/RequireAuth/RequireAuth";
+import Profile from "./Pages/Profile/Profile";
 
 function App() {
   return (
@@ -28,6 +29,14 @@ function App() {
           element={
             <RequireAuth>
               <CheckOut></CheckOut>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
+          path="/profile"
+          element={
+            <RequireAuth>
+              <Profile></Profile>
             </RequireAuth>
           }
         ></Route>
