@@ -1,24 +1,30 @@
 import React from "react";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import {
+  useSignInWithGithub,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 
 const SocialLink = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGithub, user2, loading2, error2] = useSignInWithGithub(auth);
 
   const location = useLocation();
   const navigate = useNavigate();
 
   const from = location?.state?.from?.pathname || "/";
 
-  if (user) {
+  if (user || user2) {
     navigate(from, { replace: true });
   }
 
   const handleGoogleSignIn = () => {
     signInWithGoogle();
   };
-  const handleGitHubSignIn = () => {};
+  const handleGitHubSignIn = () => {
+    signInWithGithub();
+  };
 
   return (
     <div>
@@ -28,6 +34,7 @@ const SocialLink = () => {
         <div style={{ height: "1px" }} className="bg-primary w-25"></div>
       </div>
       {error && <p className="text-danger my-1">{error.message}</p>}
+      {error2 && <p className="text-danger my-1">{error2.message}</p>}
       <div className="my-3">
         <button
           className="btn btn-success w-100 fw-bold mb-2"
