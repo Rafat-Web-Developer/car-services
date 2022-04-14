@@ -4,9 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   useCreateUserWithEmailAndPassword,
   useUpdateProfile,
+  useSendEmailVerification,
 } from "react-firebase-hooks/auth";
-import SocialLink from "../Shared/SocialLink/SocialLink";
 import auth from "../../firebase.init";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   const [agree, setAgree] = useState(false);
@@ -15,7 +17,8 @@ const SignUp = () => {
   const passwordRef = useRef("");
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
-  const [updateProfile, updating, error2] = useUpdateProfile(auth);
+  const [updateProfile] = useUpdateProfile(auth);
+  const [sendEmailVerification] = useSendEmailVerification(auth);
 
   const navigate = useNavigate();
 
@@ -30,6 +33,8 @@ const SignUp = () => {
     const password = passwordRef.current.value;
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
+    await sendEmailVerification();
+    toast("Please verify your email.");
   };
 
   return (
@@ -86,6 +91,7 @@ const SignUp = () => {
           >
             Sign Up
           </Button>
+          <ToastContainer />
           <p className="my-3">
             Already have an account{" "}
             <Link
@@ -97,7 +103,6 @@ const SignUp = () => {
             </Link>
           </p>
         </Form>
-        <SocialLink></SocialLink>
       </Card.Body>
     </Card>
   );
