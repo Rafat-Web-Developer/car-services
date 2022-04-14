@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
@@ -6,6 +6,7 @@ import SocialLink from "../Shared/SocialLink/SocialLink";
 import auth from "../../firebase.init";
 
 const SignUp = () => {
+  const [agree, setAgree] = useState(false);
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const [createUserWithEmailAndPassword, user, loading, error] =
@@ -56,13 +57,20 @@ const SignUp = () => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Check
+              onClick={() => setAgree(!agree)}
               type="checkbox"
               label="Agree with our terms and conditions"
+              className={!agree && "text-danger"}
             />
           </Form.Group>
           {loading && <p className="text-primary fw-bold">Loading...</p>}
           {error && <p className="text-danger fw-bold">{error.message}</p>}
-          <Button variant="primary" type="submit" className="w-100">
+          <Button
+            disabled={!agree}
+            variant="primary"
+            type="submit"
+            className="w-100"
+          >
             Sign Up
           </Button>
           <p className="my-3">
