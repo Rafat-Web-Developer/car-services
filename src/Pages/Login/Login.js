@@ -1,15 +1,22 @@
 import React, { useRef } from "react";
 import { Button, Card, Form } from "react-bootstrap";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useSignInWithEmailAndPassword,
+  useSendPasswordResetEmail,
+} from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import SocialLink from "../Shared/SocialLink/SocialLink";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+  const [sendPasswordResetEmail, sending, error1] =
+    useSendPasswordResetEmail(auth);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,6 +32,14 @@ const Login = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     signInWithEmailAndPassword(email, password);
+  };
+
+  const handleResetPassword = () => {
+    const email = emailRef.current.value;
+    if (email) {
+      sendPasswordResetEmail(email);
+      toast("Send email for reset your password");
+    }
   };
 
   return (
@@ -50,7 +65,6 @@ const Login = () => {
               ref={passwordRef}
               type="password"
               placeholder="Password"
-              required
             />
           </Form.Group>
           {loading && <p className="text-primary fw-bold">Loading...</p>}
@@ -67,13 +81,14 @@ const Login = () => {
               Sign up
             </Link>
           </p>
+          <ToastContainer />
           <p className="my-3">
-            <Link
-              className="fw-bold text-primary text-decoration-none"
-              to="/signup"
+            <button
+              className="ms-2 btn btn-sm btn-outline-primary"
+              onClick={handleResetPassword}
             >
               Forgot Password
-            </Link>
+            </button>
           </p>
         </Form>
         <SocialLink></SocialLink>
