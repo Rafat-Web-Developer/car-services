@@ -3,7 +3,7 @@ import { Card, Col, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const Service = ({ service }) => {
-  const { id, img, name, description, price } = service;
+  const { _id, img, name, description, price } = service;
   const navigate = useNavigate();
 
   const handleServiceDetails = (id) => {
@@ -23,7 +23,7 @@ const Service = ({ service }) => {
           <Button
             variant="primary"
             className="w-100"
-            onClick={() => handleServiceDetails(id)}
+            onClick={() => handleServiceDetails(_id)}
           >
             Learn More
           </Button>
