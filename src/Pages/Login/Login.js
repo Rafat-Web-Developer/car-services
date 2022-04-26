@@ -7,7 +7,7 @@ import {
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import SocialLink from "../Shared/SocialLink/SocialLink";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
@@ -81,7 +81,6 @@ const Login = () => {
               Sign up
             </Link>
           </p>
-          <ToastContainer />
           <p className="my-3">
             <button
               className="ms-2 btn btn-sm btn-outline-primary"

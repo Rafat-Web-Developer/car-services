@@ -14,6 +14,8 @@ import RequireAuth from "./Pages/Auth/RequireAuth/RequireAuth";
 import Profile from "./Pages/Profile/Profile";
 import AddService from "./Pages/AddService/AddService";
 import AllServices from "./Pages/AllServices/AllServices";
+import { ToastContainer } from "react-toastify";
+import EditService from "./Pages/EditService/EditService";
 
 function App() {
   return (
@@ -51,6 +53,14 @@ function App() {
           }
         ></Route>
         <Route
+          path="/editService/:serviceId"
+          element={
+            <RequireAuth>
+              <EditService></EditService>
+            </RequireAuth>
+          }
+        ></Route>
+        <Route
           path="/profile"
           element={
             <RequireAuth>
@@ -64,6 +74,7 @@ function App() {
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>
+      <ToastContainer />
     </div>
   );
 }

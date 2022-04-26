@@ -1,71 +1,61 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
-import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 
-const AddService = () => {
+const EditService = () => {
+  const { serviceId } = useParams();
+  const [serviceDetails, setServiceDetails] = useState({});
+
   const serviceNameRef = useRef();
   const serviceDescriptionRef = useRef();
   const servicePriceRef = useRef();
   const serviceImagePathRef = useRef();
 
-  const handleAddService = (event) => {
-    event.preventDefault();
-    const name = serviceNameRef.current.value;
-    const description = serviceDescriptionRef.current.value;
-    const price = servicePriceRef.current.value;
-    const img = serviceImagePathRef.current.value;
-    const data = { name, description, price, img };
-
-    fetch("http://localhost:5000/service", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
+  useEffect(() => {
+    const url = `http://localhost:5000/service/${serviceId}`;
+    fetch(url)
       .then((res) => res.json())
-      .then((data) => console.log(data));
-
-    toast("Service added successfully!!");
-    serviceNameRef.current.value = "";
-    serviceDescriptionRef.current.value = "";
-    servicePriceRef.current.value = "";
-    serviceImagePathRef.current.value = "";
-  };
+      .then((data) => setServiceDetails(data));
+  }, []);
 
   return (
     <Card className="w-50 mx-auto my-5 shadow-lg">
-      <Card.Header className="bg-primary fw-bold text-white fs-5">
-        Add Service Form
+      <Card.Header className="bg-info fw-bold text-white fs-5">
+        Edit Service Form
       </Card.Header>
       <Card.Body>
-        <Form onSubmit={handleAddService}>
+        <Form>
           <Form.Group className="mb-3" controlId="formBasicServiceName">
             <Form.Label>Service Name</Form.Label>
             <Form.Control
               ref={serviceNameRef}
               type="text"
               placeholder="Enter service name"
+              value={serviceDetails.name}
               required
             />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicDescription">
             <Form.Label>Description</Form.Label>
-            <Form.Control
+            <textarea
               ref={serviceDescriptionRef}
               type="text"
+              className="form-control"
               placeholder="Enter description"
+              value={serviceDetails.description}
               required
-            />
+            ></textarea>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPrice">
             <Form.Label>Price</Form.Label>
+
             <Form.Control
               ref={servicePriceRef}
               type="number"
               placeholder="Enter price"
+              value={serviceDetails.price}
               required
             />
           </Form.Group>
@@ -76,12 +66,13 @@ const AddService = () => {
               ref={serviceImagePathRef}
               type="text"
               placeholder="Enter Image Path"
+              value={serviceDetails.img}
               required
             />
           </Form.Group>
 
           <Button variant="primary" type="submit" className="w-100">
-            Add Service
+            Update Service
           </Button>
         </Form>
       </Card.Body>
@@ -89,4 +80,4 @@ const AddService = () => {
   );
 };
 
-export default AddService;
+export default EditService;
